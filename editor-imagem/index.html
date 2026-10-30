@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor de Imagens em Lote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="layout">
+  <aside id="painel">
+    <h1>Editor em Lote</h1>
+
+    <h2>Texto</h2>
+    <label>Texto
+      <textarea id="texto" rows="4"></textarea>
+    </label>
+    <label class="chk">
+      <input type="checkbox" id="porLinha">
+      Um texto por imagem (uma linha por imagem, na ordem; linha vazia = sem texto)
+    </label>
+
+    <h2>Fonte</h2>
+    <label>Família
+      <select id="fonte">
+        <option value="Montserrat, Arial, sans-serif">Montserrat</option>
+        <option value="Arial, Helvetica, sans-serif">Arial</option>
+        <option value="Verdana, Geneva, sans-serif">Verdana</option>
+        <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+        <option value="Georgia, serif">Georgia</option>
+        <option value="'Times New Roman', Times, serif">Times New Roman</option>
+        <option value="Impact, Haettenschweiler, sans-serif">Impact</option>
+        <option value="'Courier New', monospace">Courier New</option>
+        <option value="system-ui, sans-serif">Sistema</option>
+      </select>
+    </label>
+    <label>Peso
+      <select id="peso">
+        <option value="400">Normal</option>
+        <option value="600">Semibold</option>
+        <option value="700">Negrito</option>
+        <option value="800">Extra negrito</option>
+      </select>
+    </label>
+    <label>Tamanho <output></output>
+      <input type="range" id="tamanho" min="1" max="15" step="0.5" data-un="% da largura">
+    </label>
+    <label>Cor do texto
+      <input type="color" id="corTexto">
+    </label>
+    <label>Opacidade do texto <output></output>
+      <input type="range" id="opTexto" min="0" max="100" step="1" data-un="%">
+    </label>
+    <label class="chk">
+      <input type="checkbox" id="sombra"> Sombra no texto
+    </label>
+
+    <h2>Zoom nas fotos</h2>
+    <label>Zoom (corte centralizado) <output></output>
+      <input type="range" id="zoom" min="100" max="300" step="5" data-un="%">
+    </label>
+
+    <h2>Posição</h2>
+    <label>Âncora horizontal
+      <select id="ancoraH">
+        <option value="direita">Direita</option>
+        <option value="centro">Centro</option>
+        <option value="esquerda">Esquerda</option>
+      </select>
+    </label>
+    <label>Âncora vertical
+      <select id="ancoraV">
+        <option value="baixo">Baixo</option>
+        <option value="centro">Centro</option>
+        <option value="topo">Topo</option>
+      </select>
+    </label>
+    <label>Distância da lateral <output></output>
+      <input type="range" id="margemH" min="0" max="10" step="0.5" data-un="% da largura">
+    </label>
+    <label>Distância do rodapé/topo <output></output>
+      <input type="range" id="margemV" min="0" max="10" step="0.5" data-un="% da largura">
+    </label>
+    <label>Largura máx. do texto <output></output>
+      <input type="range" id="larguraMax" min="20" max="100" step="5" data-un="% da largura">
+    </label>
+
+    <button id="btnPadrao" class="sec">Restaurar padrão</button>
+  </aside>
+
+  <main>
+    <div id="zona">
+      <p><strong>Arraste várias imagens aqui</strong> ou escolha os arquivos</p>
+      <div class="botoes">
+        <label class="btn sec" for="entrada">Escolher imagens</label>
+        <button id="btnZip" disabled>Baixar tudo (ZIP)</button>
+        <button id="btnLimpar" class="sec" disabled>Limpar</button>
+      </div>
+      <input type="file" id="entrada" accept="image/*" multiple hidden>
+    </div>
+    <div id="msg" role="status"></div>
+    <div id="grade"></div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
